@@ -1,0 +1,23 @@
+<article class="order">
+  <header>
+
+      <h4><%= @line_item %></h4>
+  </header>
+  <table class="table table-med">
+    <thead>
+      <th>Product ID</th>
+      <th>Quantity</th>
+      <th>Price</th>
+    </thead>
+    <tbody>
+      <% @line_items.each do |li| %>
+      <tr>
+        <td><%= li.product_id %></td>
+        <td><%= li.quantity %></td>
+        <td><%= humanized_money_with_symbol li.total_price_cents/100 %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</article>
