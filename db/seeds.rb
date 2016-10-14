@@ -133,7 +133,12 @@ cat3.products.create!({
 puts 'Creating a user ...'
 User.destroy_all()
 
-User.create( id: 1, first_name: 'Foo', last_name: 'Bar', email: 'test@atest.com', password_digest: 'jq23i4rye2o3ih')
+User.create(
+  first_name:      'Foo', 
+  last_name:       'Bar',
+  email:           'test@atest.com',
+  password_digest: 'jq23i4rye2o3ih'
+  )
 
 puts 'Re-creating Reviews ...'
 Review.destroy_all()
