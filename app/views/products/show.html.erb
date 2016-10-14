@@ -23,9 +23,19 @@
           <dt>Price</dt>
           <dd><%= @product.price %></dd>
         </dl>
+
+          <% @reviews.each do |r| %>
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                User: <%= r.user_id %>
+                Date: <%= r.updated_at.strftime('%v') %>
+                Rating: <%= r.rating %>
+              </div>
+              <div class="panel-body"><%= r.description %></div>
+            </div>
+        <% end %>
+
       </div>
     </div>
-
   </article>
-
 </section>

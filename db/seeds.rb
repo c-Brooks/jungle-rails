@@ -134,10 +134,10 @@ puts 'Creating a user ...'
 User.destroy_all()
 
 User.create(
-  first_name:      'Foo', 
-  last_name:       'Bar',
+  first_name:      'test_fn',
+  last_name:       'test_ln',
   email:           'test@atest.com',
-  password_digest: 'jq23i4rye2o3ih'
+  password_digest: '$2a$10$wxmOpen.UmjcH0G/gSVBA.uZmaCKlZ8/nDEZ4HeIAFAj0gN9JyJWW'
   )
 
 puts 'Re-creating Reviews ...'
