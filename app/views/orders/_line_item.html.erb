@@ -1,7 +1,6 @@
 <article class="order">
   <header>
 
-      <h4><%= @line_item %></h4>
   </header>
   <table class="table table-med">
     <thead>
@@ -14,7 +13,7 @@
       <tr>
         <td><%= li.product_id %></td>
         <td><%= li.quantity %></td>
-        <td><%= humanized_money_with_symbol li.total_price_cents/100 %></td>
+        <td><%= humanized_money_with_symbol (li.total_price_cents.to_i)/100.0 %></td>
       </tr>
       <% end %>
     </tbody>
