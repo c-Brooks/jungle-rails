@@ -4,6 +4,7 @@
     <h1>My Cart</h1>
   </header>
 
+  <% if cart.count > 0 %>
   <div class="panel panel-default items">
     <table class="table table-bordered">
       <thead>
@@ -49,5 +50,17 @@
       <% end %>
     </div>
   </div>
+  <% else %>
+
+  <div class="jumbotron">
+    <h2>
+      Your cart is empty!
+    </h2>
+    <button class="btn btn-info">
+      <%= link_to 'Back', :back %>
+    </button>
+  </div>
+<% end %>
+
 
 </section>
