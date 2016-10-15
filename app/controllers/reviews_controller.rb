@@ -11,14 +11,11 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.user = current_user
 
-
-    # @review.product_id = @product.id
-    puts 'review:', @review.inspect
     if @review.save
       redirect_to product_path(@product)
     else
       puts "\nFAILED: #{@review.inspect}"
-      redirect_to root_path
+      redirect_to product_path(@product)
     end
   end
 

@@ -31,8 +31,8 @@
           <dt>Price</dt>
           <dd><%= @product.price %></dd>
         </dl>
-
-          <% @reviews.each do |r| %>
+      <!-- Only show most recent reviews -->
+          <% @reviews.last(3).reverse.each do |r| %>
             <div class="panel panel-info">
               <div class="panel-heading">
                 User: <%= r.user_id %>
