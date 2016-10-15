@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       session[:user_id] = user.id
       redirect_to '/'
     else
-      puts "Unsuccessful... \n"
+      puts "Unsuccessful user creation ... \n"
       redirect_to '/signup'
     end
   end

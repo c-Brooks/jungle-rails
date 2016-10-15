@@ -10,6 +10,14 @@
 
       <div class="col-sm-4">
         <%= image_tag @product.image.url, class: 'main-img' %>
+        <div class="">
+          <%= form_for [@product, @review] do |f| %>
+          <%= f.text_area :description %>
+          <%= f.select :rating, options_for_select(0..5), { prompt: "Rating" } %>
+          <%= f.hidden_field :product_id, value: @product.id %>
+          <%= f.submit %>
+          <% end %>
+        </div>
       </div>
 
       <div class="col-sm-8">
