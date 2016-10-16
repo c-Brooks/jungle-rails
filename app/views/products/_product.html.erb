@@ -8,6 +8,18 @@
   <p class="description">
     <%= product.description %>
   </p>
+
+  <!--  Stars for ratings  -->
+  <% rating_avg = Review.where(product_id: product.id).average(:rating) || 0 %>
+  <% r = rating_avg.to_i %>
+
+  <% (0..r-1).each do %>
+    <span class="glyphicon glyphicon-star" style="color: #ffbf00"></span>
+  <% end %>
+  <% (r..4).each do %>
+    <span class="glyphicon glyphicon-star-empty" style="color: #ffbf00"></span>
+  <% end %>
+
   <footer class="actions">
     <%= link_to add_item_cart_path(product_id: product.id), class: 'btn btn-primary', method: :put do %>
       <%= fa_icon "shopping-cart", text: 'Add' %>
