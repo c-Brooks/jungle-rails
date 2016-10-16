@@ -31,19 +31,20 @@
           <dt>Price</dt>
           <dd><%= @product.price %></dd>
           <dt>Average Rating</dt>
-          <dd><%= @rating_avg || 'No ratings' %></dd>
-
+          <dd><%= @rating_avg.round(2) || 'No ratings' %></dd>
         </dl>
-      <!-- Only show most recent reviews -->
-          <% @reviews.last(3).reverse.each do |r| %>
-            <div class="panel panel-info">
-              <div class="panel-heading">
-                User: <%= r.user_id %>
-                Date: <%= r.updated_at.strftime('%v') %>
-                Rating: <%= r.rating %>
-              </div>
-              <div class="panel-body"><%= r.description %></div>
+
+          <!-- Only show most recent 3 reviews that have descriptions -->
+      <% reviews_with_descr = @reviews.select { |review| review.description != '' } %>
+        <% reviews_with_descr.last(3).reverse.each do |r| %>
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              User: <%= r.user_id %>
+              Date: <%= r.updated_at.strftime('%v') %>
+              Rating: <%= r.rating %>
             </div>
+            <div class="panel-body"><%= r.description %></div>
+          </div>
         <% end %>
       </div>
     </div>
