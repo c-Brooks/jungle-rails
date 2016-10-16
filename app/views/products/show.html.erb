@@ -30,6 +30,9 @@
           <dd><%= @product.quantity %></dd>
           <dt>Price</dt>
           <dd><%= @product.price %></dd>
+          <dt>Average Rating</dt>
+          <dd><%= @rating_avg || 'No ratings' %></dd>
+
         </dl>
       <!-- Only show most recent reviews -->
           <% @reviews.last(3).reverse.each do |r| %>
@@ -42,7 +45,6 @@
               <div class="panel-body"><%= r.description %></div>
             </div>
         <% end %>
-
       </div>
     </div>
   </article>

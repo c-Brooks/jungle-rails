@@ -7,7 +7,6 @@ class ReviewsController < ApplicationController
 
   def create
     @product = Product.find(params[:product_id])
-    puts 'review params:', review_params
     @review = Review.new(review_params)
     @review.user = current_user
 
