@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
     @product = Product.find params[:id]
     @reviews = @product.reviews
     @review  = Review.new
-    @rating_avg = rating_avg @product.id
+    @rating_avg = rating_avg
   end
 
   def rating_avg

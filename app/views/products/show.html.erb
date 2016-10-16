@@ -7,18 +7,23 @@
   <article class="product-detail">
 
     <div class="row">
-
       <div class="col-sm-4">
         <%= image_tag @product.image.url, class: 'main-img' %>
-        <div class="">
+        <% if current_user %>
+        <div class="jumbotron">
           <%= form_for [@product, @review] do |f| %>
-          <%= f.text_area :description %>
-          <%= f.select :rating, options_for_select(0..5), { prompt: "Rating" } %>
-          <%= f.hidden_field :product_id, value: @product.id %>
-          <%= f.submit %>
+          <%= f.text_area :description, { class: "form-control" } %>
+            <div class="input-group">
+              <%= f.select :rating, options_for_select(0..5), { prompt: "Rating" },  { class: "form-control" } %>
+              <%= f.hidden_field :product_id, value: @product.id %>
+            <%= f.submit :class => "form-control" %>
+          </div>
           <% end %>
+
+        <% end %>
         </div>
       </div>
+
 
       <div class="col-sm-8">
         <dl class="dl-horizontal">
@@ -48,6 +53,9 @@
               <% end %>
               <% (r.rating..4).each do %>
               <span class="glyphicon glyphicon-star-empty" style="color: #ffbf00"></span>
+              <% end %>
+              <% if r.user.id == current_user.id %>
+              <%= link_to fa_icon('trash'), [@product, r], class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %>
               <% end %>
               <span style="float: right"> Posted on: <%= r.updated_at.strftime('%v') %> </span>
             </div>
