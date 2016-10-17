@@ -1,3 +1,4 @@
 class Admin::AdminController < ApplicationController
-  http_basic_authenticate_with { name: "jungle", password:"book" }
+ http_basic_authenticate_with name: ENV['ADMIN_NAME'], password: ENV['ADMIN_PASS']
+
 end
