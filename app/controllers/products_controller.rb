@@ -2,8 +2,6 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all.order(created_at: :desc)
-    # @product = Product.find
-    # @rating_avg = rating_avg
   end
 
   def show
