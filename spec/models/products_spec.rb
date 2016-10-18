@@ -19,22 +19,92 @@ RSpec.describe Product, type: :model do
     end
 
     it 'should should have a name' do
-      @cat1 = Category.new(name: 'Category')
+      @cat = Category.new(name: 'Category')
 
-      @prod1 = Product.new(
+      @prod = Product.new(
         name: nil,
-        category: @cat1,
+        category: @cat,
         description: 'Description',
         quantity: 12,
         price: 9.99
         )
-      # @prod.errors.messages[:name].should include("Name can\'t be blank")
-      # expect(@prod).to have(1).error_on(:name)
-      expect(@prod1.errors.size).to eq(1)
+
+      expect(@prod).to_not be_valid
+      @prod.save
+      expect(@prod.errors.messages[:name]).to include("can\'t be blank")
+      expect(@prod.errors.full_messages.size).to eq(1)
 
     end
 
-    it 'should be valid' do
+    it 'should have a category' do
+
+      @prod = Product.new(
+        name: 'Name',
+        category: nil,
+        description: 'Description',
+        quantity: 12,
+        price: 9.99
+        )
+        expect(@prod).to_not be_valid
+        @prod.save
+        expect(@prod.errors.messages[:category]).to include("can\'t be blank")
+        expect(@prod.errors.full_messages.size).to eq(1)
+    end
+
+    context "quantity" do
+      it "should be present" do
+        @cat = Category.new(name: "Category")
+
+        @prod = Product.new(
+          name: 'Name',
+          category: @cat,
+          description: 'Description',
+          quantity: nil,
+          price: 9.99
+          )
+          expect(@prod).to_not be_valid
+          @prod.save
+          expect(@prod.errors.messages[:quantity]).to include("can\'t be blank")
+          expect(@prod.errors.full_messages.size).to eq(2)
+      end
+
+    it "should be a number" do
+      @cat = Category.new(name: 'Category')
+
+      @prod = Product.new(
+        name: 'Name',
+        category: @cat,
+        description: 'Description',
+        quantity: 'abc',
+        price: 9.99
+        )
+        expect(@prod).to_not be_valid
+        @prod.save
+        expect(@prod.errors.messages[:quantity]).to include
+        [("is not a number")]
+        expect(@prod.errors.full_messages.size).to eq(1)
+      end
+    end
+
+
+    context "price" do
+      it "should be present" do
+        @cat = Category.new(name: "Category")
+
+        @prod = Product.new(
+          name: 'Name',
+          category: @cat,
+          description: 'Description',
+          quantity: 12,
+          price: nil
+          )
+          expect(@prod).to_not be_valid
+          @prod.save
+          expect(@prod.errors.messages[:price]).to include("can\'t be blank")
+          expect(@prod.errors.full_messages.size).to eq(4)
+      end
+
+    it "should be a number" do
       @cat = Category.new(name: 'Category')
 
       @prod = Product.new(
@@ -42,25 +112,15 @@ RSpec.describe Product, type: :model do
         category: @cat,
         description: 'Description',
         quantity: 12,
-        price: 9.99
+        price: 'abc'
         )
+        expect(@prod).to_not be_valid
         @prod.save
+        expect(@prod.errors.messages[:price]).to include
+        [("is not a number")]
+        expect(@prod.errors.full_messages.size).to eq(1)
+      end
     end
-
-    it 'should be valid' do
-      @cat = Category.new(name: 'Category')
-
-      @prod = Product.new(
-        name: nil,
-        category: @cat,
-        description: 'Description',
-        quantity: 12,
-        price: 9.99
-        )
-
-      expect(@prod).to be_valid
-    end
-
 
   end
 end
