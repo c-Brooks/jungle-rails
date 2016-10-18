@@ -5,7 +5,7 @@ RSpec.describe Product, type: :model do
 
   describe 'Validations' do
 
-    it 'should be valid' do
+    it 'should be valid with good data' do
       @cat = Category.new(name: 'Category')
 
       @prod = Product.new(
@@ -18,6 +18,19 @@ RSpec.describe Product, type: :model do
       expect(@prod).to be_valid
     end
 
+    it 'should be valid even without description' do
+      @cat = Category.new(name: 'Category')
+
+      @prod = Product.new(
+        name: 'Name',
+        category: @cat,
+        description: nil,
+        quantity: 12,
+        price: 9.99
+        )
+      expect(@prod).to be_valid
+    end
+    
     it 'should should have a name' do
       @cat = Category.new(name: 'Category')
 
