@@ -29,7 +29,6 @@ RSpec.describe User, type: :model do
       expect(@usr).to_not be_valid
       expect(@usr.errors.messages[:first_name]).to include('can\'t be blank')
       expect(@usr.errors.messages[:first_name]).to include('is too short (minimum is 3 characters)')
-
     end
 
     it 'should be rejected if last name is not present' do

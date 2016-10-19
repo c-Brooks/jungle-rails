@@ -46,9 +46,6 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'rspec-rails', '~> 3.5'
-  gem 'capybara', '~> 2.5'
-  gem 'factory_girl_rails', '~> 4.5.0'
 end
 
 group :development do
@@ -62,6 +59,10 @@ end
 group :test do
   gem 'shoulda-matchers', '~> 3.0', require: false
   gem 'database_cleaner', '~> 1.5'
+  gem 'poltergeist'
+  gem 'capybara', '~> 2.5'
+  gem 'rspec-rails', '~> 3.5'
+
 end
 
 group :production do
