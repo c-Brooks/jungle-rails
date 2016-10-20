@@ -9,7 +9,6 @@ class Admin::ProductsController < ApplicationController
   end
 
   def create
-    puts 'product_params:', product_params
     @product = Product.new(product_params)
 
     if @product.save
@@ -28,7 +27,6 @@ class Admin::ProductsController < ApplicationController
   private
 
   def product_params
-    puts 'PROD params', params.inspect
     params.require(:product).permit(
       :name,
       :description,

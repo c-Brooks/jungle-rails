@@ -13,8 +13,9 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to product_path(@product)
     else
-      puts "\nFAILED: #{@review.inspect}"
       redirect_to product_path(@product)
+
+      flash.alert = 'Could not post review.'
     end
   end
 
