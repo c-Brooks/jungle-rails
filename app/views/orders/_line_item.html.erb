@@ -4,18 +4,23 @@
   </header>
   <table class="table table-med">
     <thead>
-      <th>Product ID</th>
+      <th></th>
+      <th>Product</th>
+      <th>Description</th>
       <th>Quantity</th>
       <th>Price</th>
     </thead>
     <tbody>
-      <% @line_items.each do |li| %>
+      <% @order.line_items.each do |li| %>
       <tr>
-        <td><%= li.product_id %></td>
+        <td><%= image_tag li.product.image.tiny %></td>
+        <td><%= li.product.name %></td>
+        <td><%= li.short_prod_descr %></td>
         <td><%= li.quantity %></td>
         <td><%= humanized_money_with_symbol (li.total_price_cents.to_i)/100.0 %></td>
       </tr>
       <% end %>
+
     </tbody>
   </table>
 
